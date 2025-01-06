@@ -41,29 +41,31 @@ export default function App() {
             </tr>
           </thead>
           <tbody>
-            {todos.map(({ id, title, description }) => {
-              return (
-                <tr>
-                  <td>{id}</td>
-                  <td>{title}</td>
-                  <td>{description}</td>
-                  <td>
-                    <button
-                      type="button"
-                      title="Edit"
-                      onClick={() => activeTodo(id)}>
-                      Edit
-                    </button>
-                    <button
-                      type="button"
-                      title="Delete"
-                      onClick={() => deleteFxn(id)}>
-                      Delete
-                    </button>
-                  </td>
-                </tr>
-              );
-            })}
+            {todos
+              .filter(e => e.deleted === false)
+              .map(({ id, title, description }) => {
+                return (
+                  <tr>
+                    <td>{id}</td>
+                    <td>{title}</td>
+                    <td>{description}</td>
+                    <td>
+                      <button
+                        type="button"
+                        title="Edit"
+                        onClick={() => activeTodo(id)}>
+                        Edit
+                      </button>
+                      <button
+                        type="button"
+                        title="Delete"
+                        onClick={() => deleteFxn(id)}>
+                        Delete
+                      </button>
+                    </td>
+                  </tr>
+                );
+              })}
           </tbody>
         </table>
       </div>
