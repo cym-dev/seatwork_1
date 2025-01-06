@@ -17,7 +17,7 @@ export default function Calculator() {
       const math = create(all);
 
       const result = math.evaluate(numbers);
-      setNumbers(result);
+      setNumbers(String(result));
     } catch (error) {
       setNumbers("Error");
     }
