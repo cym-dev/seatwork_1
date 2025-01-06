@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Calculator from "./calculator";
 
 export default function App() {
   const [todos, setTodos] = useState([
@@ -28,77 +29,84 @@ export default function App() {
   const clearUser = () => setTodo({ id: todos.length + 1, name: "" });
 
   return (
-    <div>
-      <h1>User todos</h1>
+    <div className="container flex">
+      <div className="column-12 mx-10">
+        <h1>User todos</h1>
 
-      <div>
-        <table>
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Title</th>
-              <th>Description</th>
-            </tr>
-          </thead>
-          <tbody>
-            {todos
-              .filter(e => e.deleted === false)
-              .map(({ id, title, description }) => {
-                return (
-                  <tr>
-                    <td>{id}</td>
-                    <td>{title}</td>
-                    <td>{description}</td>
-                    <td>
-                      <button
-                        type="button"
-                        title="Edit"
-                        onClick={() => activeTodo(id)}>
-                        Edit
-                      </button>
-                      <button
-                        type="button"
-                        title="Delete"
-                        onClick={() => deleteFxn(id)}>
-                        Delete
-                      </button>
-                    </td>
-                  </tr>
-                );
-              })}
-          </tbody>
-        </table>
+        <div>
+          <table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Title</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              {todos
+                .filter(e => e.deleted === false)
+                .map(({ id, title, description }) => {
+                  return (
+                    <tr>
+                      <td>{id}</td>
+                      <td>{title}</td>
+                      <td>{description}</td>
+                      <td>
+                        <button
+                          type="button"
+                          title="Edit"
+                          onClick={() => activeTodo(id)}>
+                          Edit
+                        </button>
+                        <button
+                          type="button"
+                          title="Delete"
+                          onClick={() => deleteFxn(id)}>
+                          Delete
+                        </button>
+                      </td>
+                    </tr>
+                  );
+                })}
+            </tbody>
+          </table>
+        </div>
+        <hr />
+        <div>
+          <h3>User Form</h3>
+          <form>
+            <button type="button" onClick={clearUser}>
+              Create New
+            </button>
+            <br />
+            <label>
+              Title:
+              <input
+                type="text"
+                name="title"
+                value={todo.title}
+                onChange={e => setTodo({ ...todo, title: e.target.value })}
+              />
+            </label>
+            <br />
+            <label>
+              Description:
+              <textarea
+                name="description"
+                value={todo.description}
+                onChange={e =>
+                  setTodo({ ...todo, description: e.target.value })
+                }
+              />
+            </label>
+            <button type="button" onClick={() => updateTodos(todo)}>
+              Submit
+            </button>
+          </form>
+        </div>
       </div>
-      <hr />
-      <div>
-        <h3>User Form</h3>
-        <form>
-          <button type="button" onClick={clearUser}>
-            Create New
-          </button>
-          <br />
-          <label>
-            Title:
-            <input
-              type="text"
-              name="title"
-              value={todo.title}
-              onChange={e => setTodo({ ...todo, title: e.target.value })}
-            />
-          </label>
-          <br />
-          <label>
-            Description:
-            <textarea
-              name="description"
-              value={todo.description}
-              onChange={e => setTodo({ ...todo, description: e.target.value })}
-            />
-          </label>
-          <button type="button" onClick={() => updateTodos(todo)}>
-            Submit
-          </button>
-        </form>
+      <div className="column-12">
+        <Calculator />
       </div>
     </div>
   );
