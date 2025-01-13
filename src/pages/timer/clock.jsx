@@ -7,9 +7,10 @@ export default function Clock({
   handleConvertToTime,
   setTime,
   time,
+  lastTimer,
+  setLastTimer,
 }) {
-  const [play, setPlay] = useState(false),
-    [lastTimer, setLastTimer] = useState({ hour: 0, minute: 0, second: 0 });
+  const [play, setPlay] = useState(false);
 
   let interval = useRef(null);
   //   useEffect(() => {

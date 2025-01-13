@@ -65,7 +65,7 @@ export default function Layout() {
               </li>
               <li>
                 <Link
-                  onClick={() => handleTab("timmer")}
+                  onClick={() => handleTab("timer")}
                   to="/timer"
                   className={`${
                     tab === "timer"

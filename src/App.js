@@ -8,7 +8,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Activity1 />} />
-          <Route path="timer" element={<Timer />} />
+          <Route path="/timer" element={<Timer />} />
         </Route>
       </Routes>
     </BrowserRouter>

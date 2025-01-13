@@ -7,8 +7,8 @@ export default function Timer() {
       minute: 0,
       second: 0,
     }),
-    [time, setTime] = useState("00:00:00");
-
+    [time, setTime] = useState("00:00:00"),
+    [lastTimer, setLastTimer] = useState({ hour: 0, minute: 0, second: 0 });
   const handleConvertToTime = _timer => {
     let time = { ..._timer };
     if (time.hour < 10) {
@@ -29,12 +29,20 @@ export default function Timer() {
         <div className="grid grid-rows-3 grid-flow-col gap-4 ">
           <Clock
             timer={timer}
-            setTime={setTime}
             time={time}
+            lastTimer={lastTimer}
+            setLastTimer={setLastTimer}
+            setTime={setTime}
             setTimer={setTimer}
             handleConvertToTime={handleConvertToTime}
           />
-          <List setTimer={setTimer} handleConvertToTime={handleConvertToTime} />
+          <List
+            timer={timer}
+            setTime={setTime}
+            setLastTimer={setLastTimer}
+            setTimer={setTimer}
+            handleConvertToTime={handleConvertToTime}
+          />
         </div>
       </div>
     </div>

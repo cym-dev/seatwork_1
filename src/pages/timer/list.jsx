@@ -1,7 +1,13 @@
 import React, { useState } from "react";
 import Modal from "./modal";
 
-export default function List({ handleConvertToTime, setTimer }) {
+export default function List({
+  handleConvertToTime,
+  setTimer,
+  timer,
+  setLastTimer,
+  setTime,
+}) {
   const [items, setItems] = useState([
       {
         id: 1,
@@ -85,6 +91,12 @@ export default function List({ handleConvertToTime, setTimer }) {
     setToggle(true);
   };
 
+  const handleUseTime = _timer => {
+    setTimer(_timer);
+    setLastTimer(_timer);
+    setTime(handleConvertToTime(_timer));
+  };
+
   return (
     <div className=" row-span-3 col-span-1 max-w-sm h-fit p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
       <button
@@ -107,12 +119,12 @@ export default function List({ handleConvertToTime, setTimer }) {
               <tr key={index}>
                 <td
                   className="px-6 py-3 cursor-pointer"
-                  onClick={() => setTimer(item.duration)}>
+                  onClick={() => handleUseTime(item.duration)}>
                   {item.name}
                 </td>
                 <td
                   className="px-6 py-3 cursor-pointer"
-                  onClick={() => setTimer(item.duration)}>
+                  onClick={() => handleUseTime(item.duration)}>
                   {handleConvertToTime(item.duration)}
                 </td>
                 <td>
