@@ -5,7 +5,7 @@ export default function Timer() {
   const [timer, setTimer] = useState({
       hour: 0,
       minute: 0,
-      second: 10,
+      second: 0,
     }),
     [time, setTime] = useState("00:00:00");
 
